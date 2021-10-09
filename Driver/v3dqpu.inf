@@ -1,0 +1,110 @@
+[Version]
+Signature = "$Windows NT$"
+Class = Display
+ClassGuid = {4D36E968-E325-11CE-BFC1-08002BE10318}
+Provider = %Provider%
+DriverVer = ; StampInf
+CatalogFile = %DriverName%.cat
+PnpLockdown = 1
+
+[Manufacturer]
+%Provider% = Model,NT$ARCH$
+
+[Model.NT$ARCH$]
+%DeviceName% = Driver,%InstallPath%
+
+[SourceDisksNames]
+1 = %SourceDisk%
+
+[SourceDisksFiles]
+v3dqpu.sys = 1 ; BUG: Cannot use %DriverName% without Python
+v3dqpu.dll = 1 ; BUG: Cannot use %DriverName% without Python
+
+[DestinationDirs]
+Driver.KMD = 12 ; drivers
+Driver.UMD = 11 ; system32
+
+[DeviceInstall32]
+AddDevice = %InstallPath%,,Device
+
+[Device]
+HardwareIds = %InstallPath%
+
+[Driver]
+FeatureScore = FB
+CopyFiles = Driver.KMD,Driver.UMD
+AddReg = Driver.Registry
+
+[Driver.KMD]
+%DriverName%.sys,,%DRIVER_KMD_POLICY%
+
+[Driver.UMD]
+%DriverName%.dll,,%DRIVER_UMD_POLICY%
+
+[Driver.HW]
+AddReg = Driver.Registry
+
+[Driver.Registry]
+HKR,,LocationInformationOverride,,%Location%
+HKR,,Security,,"D:P(A;CI;GA;;;BA)(A;CI;GA;;;SY)"
+HKR,,DeviceType, %REG_DWORD%, %FILE_DEVICE_VENDOR%
+HKR,,DeviceCharacteristics, %REG_DWORD%, %FILE_DEVICE_SECURE_OPEN%
+HKR,,InstalledDisplayDrivers,%REG_MULTI_SZ%,%DriverName%,%DriverName%,%DriverName%,%DriverName%
+HKR,,UserModeDriverName,%REG_MULTI_SZ%,%DriverName%.dll,%DriverName%.dll,%DriverName%.dll,%DriverName%.dll
+HKLM,"SYSTEM\CurrentControlSet\Control\GraphicsDrivers",TdrDebugMode,%REG_DWORD%,0
+HKLM,"SYSTEM\CurrentControlSet\Control\GraphicsDrivers\Scheduler",EnablePreemption,%REG_DWORD%,0
+HKLM,"SYSTEM\CurrentControlSet\Control\GraphicsDrivers\MemoryManager",DirectFlipMemoryRequirement,%REG_DWORD%,0
+
+[Driver.Services]
+AddService = %DriverName%,%SERVICE_INSTALL%,Service,Service.SW
+
+[Service]
+DisplayName = %DeviceName%
+ServiceType = %SERVICE_KERNEL_DRIVER%
+StartType = %SERVICE_DEMAND_START%
+ErrorControl = %SERVICE_ERROR_IGNORE%
+ServiceBinary = %13%\%DriverName%.sys
+LoadOrderGroup = Video
+
+[Service.SW]
+AddReg = Service.Registry
+
+[Service.Registry]
+HKR,,EventMessageFile,%REG_EXPAND_SZ%,"%%SystemRoot%%\System32\IoLogMsg.dll"
+HKR,,TypesSupported,%REG_DWORD%,%SERVICE_EVENTS%
+
+[Strings]
+Provider = "The"
+Location = "This Machine"
+InstallPath = "ROOT\V3DQPU"
+DriverName = "v3dqpu"
+DeviceName = "V3DQPU Test Driver"
+SourceDisk = "Windows Diagnostic Drivers"
+
+SERVICE_KERNEL_DRIVER = 0x1
+SERVICE_INSTALL = 0x2
+SERVICE_EVENTS = 0x7
+
+SERVICE_BOOT_START = 0x0
+SERVICE_SYSTEM_START = 0x1
+SERVICE_AUTO_START = 0x2
+SERVICE_DEMAND_START = 0x3
+SERVICE_DISABLED = 0x4
+
+SERVICE_ERROR_IGNORE = 0x0
+SERVICE_ERROR_NORMAL = 0x1
+SERVICE_ERROR_SEVERE = 0x2
+SERVICE_ERROR_CRITICAL = 0x3
+
+SERVICE_GRAPHICS = 0x100
+SERVICE_OVERWRITE = 0x4000
+
+FILE_DEVICE_VENDOR = 0x8888
+FILE_DEVICE_SECURE_OPEN = 0x100
+
+DRIVER_KMD_POLICY = 0x100
+DRIVER_UMD_POLICY = 0x4000
+
+REG_MULTI_SZ = 0x00010000
+REG_EXPAND_SZ = 0x00020000
+REG_DWORD = 0x00010001

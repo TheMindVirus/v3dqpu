@@ -1,0 +1,5 @@
+﻿  Building 'V3DQPU' with toolset 'WindowsKernelModeDriver10.0' and the 'Universal' target platform.
+  Stamping ARM64\Debug\v3dqpu.inf
+  Stamping [Version] section with DriverVer=10/09/2021,19.32.39.809
+C:\Program Files (x86)\Windows Kits\10\build\WindowsDriver.common.targets(1758,5): error MSB3030: Could not copy the file "C:\Users\Alastair\Documents\Visual Studio 2019\Projects\V3DQPU\ARM64\Debug\v3dqpu.sys" because it was not found.
+C:\Program Files (x86)\Windows Kits\10\build\WindowsDriver.common.targets(1758,5): error MSB3030: Could not copy the file "C:\Users\Alastair\Documents\Visual Studio 2019\Projects\V3DQPU\ARM64\Debug\v3dqpu.dll" because it was not found.

@@ -1,0 +1,10 @@
+Inf2Cat Tool Output:
+.........................
+Signability test failed.
+
+Errors:
+22.9.10: %drivername%.sys in [driver.kmd] is missing from [SourceDisksFiles] section in V3DQPU\v3dqpu.inf; driver may not sign correctly until this is resolved.
+22.9.10: %drivername%.dll in [driver.umd] is missing from [SourceDisksFiles] section in V3DQPU\v3dqpu.inf; driver may not sign correctly until this is resolved.
+
+Warnings:
+None
