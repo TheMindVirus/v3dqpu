@@ -4,7 +4,7 @@
 #ifdef DBG
 #define DBG   1
 #define debug(...)   \
-	KdPrintEx((DPFLTR_IHVDRIVER_ID, DPFLTR_ERROR_LEVEL, __VA_ARGS__)); \
+    KdPrintEx((DPFLTR_IHVDRIVER_ID, DPFLTR_ERROR_LEVEL, __VA_ARGS__)); \
     KdPrintEx((DPFLTR_IHVDRIVER_ID, DPFLTR_ERROR_LEVEL, "\n"));
 #else
 #define debug(...)
@@ -19,17 +19,17 @@
 
 typedef struct
 {
-	PULONG iobase_pwr;
-	PULONG iobase_asb;
-	PULONG iobase_v3d;
+    PULONG iobase_pwr;
+    PULONG iobase_asb;
+    PULONG iobase_v3d;
 }   DRIVER_CONTEXT, *PDRIVER_CONTEXT;
 static PDRIVER_CONTEXT ctx;
 #define DRIVER_TAG_EXTENSION   (PVOID)1
 
 extern "C"
 {
-	DRIVER_INITIALIZE   DriverEntry;
-	DRIVER_UNLOAD       DriverUnload;
+    DRIVER_INITIALIZE   DriverEntry;
+    DRIVER_UNLOAD       DriverUnload;
 }
 
 #include "dxgkddi.hxx"

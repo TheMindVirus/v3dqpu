@@ -2,7 +2,7 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>C:\Users\Alastair\Documents\Visual Studio 2019\Projects\V3DQPU\ARM64\Debug\v3dqpu.dll</FullPath>
+      <FullPath>C:\Users\Alastair\Documents\GitHub\v3dqpu\ARM64\Debug\v3dqpu.dll</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />
